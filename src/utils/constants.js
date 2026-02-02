@@ -23,17 +23,56 @@ export const STATS = [
 ];
 
 export const TOOLS = [
-  { name: 'Figma', category: 'UI/UX design', icon: '/assets/icons/figma.png' },
-  { name: 'React', category: 'Front-end', icon: '/assets/icons/react.png' },
-  { name: 'Node.js', category: 'Back-end', icon: '/assets/icons/node.png' },
-  { name: 'TailwindCSS', category: 'CSS Framework', icon: '/assets/icons/tailwind.png' },
-  { name: 'MongoDB', category: 'Database', icon: '/assets/icons/mongodb.png' },
-  { name: 'Python', category: 'AI/ML', icon: '/assets/icons/python.png' },
-  { name: 'Docker', category: 'DevOps', icon: '/assets/icons/docker.png' },
-  { name: 'Git', category: 'Version Control', icon: '/assets/icons/git.png' },
-  { name: 'AWS', category: 'Cloud', icon: '/assets/icons/aws.png' },
-  { name: 'TypeScript', category: 'Programming', icon: '/assets/icons/typescript.png' },
-  { name: 'TypeScript', category: 'Programming', icon: '/assets/icons/typescript.png' },
+  { 
+    name: 'Figma', 
+    category: 'UI/UX design', 
+    icon: 'https://cdn.simpleicons.org/figma/F24E1E' 
+  },
+  { 
+    name: 'React', 
+    category: 'Front-end', 
+    icon: 'https://cdn.simpleicons.org/react/61DAFB' 
+  },
+  { 
+    name: 'Node.js', 
+    category: 'Back-end', 
+    icon: 'https://cdn.simpleicons.org/node.js/339933' 
+  },
+  { 
+    name: 'TailwindCSS', 
+    category: 'CSS Framework', 
+    icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' 
+  },
+  { 
+    name: 'MongoDB', 
+    category: 'Database', 
+    icon: 'https://cdn.simpleicons.org/mongodb/47A248' 
+  },
+  { 
+    name: 'Python', 
+    category: 'AI/ML', 
+    icon: 'https://cdn.simpleicons.org/python/3776AB' 
+  },
+  { 
+    name: 'Docker', 
+    category: 'DevOps', 
+    icon: 'https://cdn.simpleicons.org/docker/2496ED' 
+  },
+  { 
+    name: 'Git', 
+    category: 'Version Control', 
+    icon: 'https://cdn.simpleicons.org/git/F05032' 
+  },
+  { 
+    name: 'AWS', 
+    category: 'Cloud', 
+    icon: 'https://cdn.simpleicons.org/amazonaws/232F3E' 
+  },
+  { 
+    name: 'TypeScript', 
+    category: 'Programming', 
+    icon: 'https://cdn.simpleicons.org/typescript/3178C6' 
+  },
 ];
 
 export const SERVICES = [
