@@ -32,16 +32,16 @@ export default function HeroSection() {
         className="
           absolute 
           left-1/2 
-          top-[30%] 
-          sm:top-[30%]
-          md:top-[20%]
-          lg:top-[15%]
+          top-[20%] 
+          sm:top-[10%]
+          md:top-[5%]
+          lg:top-[-2%]
           -translate-x-1/2 
           w-[200px] h-[240px]
           sm:w-[280px] sm:h-[330px]
           md:w-[350px] md:h-[410px]
           lg:w-[430px] lg:h-[500px]
-          z-50
+          z-20
           pointer-events-none
         "
         animate={{ y: [0, -55, 0] }}
@@ -62,7 +62,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 relative z-10 text-center">
         <div className="mb-8 relative">
           {/* Titre ANGOAKA avec lettres SVG individuelles */}
-          <div className="mt-28 flex justify-center items-center gap-2 md:gap-4 relative">
+          <div className="mt-8 flex justify-center items-center gap-2 md:gap-4 relative">
             {letters.map((letter, index) => (
               <motion.div
                 key={index}
@@ -173,7 +173,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.5 }}
         >
-          <div className='mt-16'>
+          <div className='mt-20'>
             <p className="text-white text-xl md:text-2xl mb-4 font-light ">
               From idea to scalable digital products.
             </p>
@@ -186,12 +186,12 @@ export default function HeroSection() {
 
         {/* Boutons */}
         <motion.div
-          className="w-full flex justify-center"
+          className="w-full flex justify-center "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <div className="flex items-center justify-center gap-4 flex-wrap">
+          <div className="mt-16 flex items-center justify-center gap-4 flex-wrap">
 
             <button className="h-11 text-white px-6 py-1.5 rounded-md bg-[#E00216] transition flex items-center gap-2 shadow-md mr-6 md:mr-8">
               <span>Get started</span>
