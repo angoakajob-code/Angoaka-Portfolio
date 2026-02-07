@@ -4,14 +4,15 @@ import { motion } from 'framer-motion';
 export default function HeroSection() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const letters = [
-    { char: 'A', file: 'A.svg' },
-    { char: 'N', file: 'N.svg' },
-    { char: 'G', file: 'G.svg' },
-    { char: 'O', file: 'O.svg' },
-    { char: 'A', file: 'A.svg' },
-    { char: 'K', file: 'K.svg' },
-    { char: 'A', file: 'A.svg' }
-  ];
+  { char: 'A', file: 'A.svg', scale: 1 },
+  { char: 'N', file: 'N.svg', scale: 0.95 },
+  { char: 'G', file: 'G.svg', scale: 1.1 },
+  { char: 'O', file: 'O.svg', scale: 1.15 },
+  { char: 'A', file: 'A.svg', scale: 1 },
+  { char: 'K', file: 'K.svg', scale: 0.97 },
+  { char: 'A', file: 'A.svg', scale: 1 }
+];
+
 
   return (
     <section
@@ -31,11 +32,16 @@ export default function HeroSection() {
         className="
           absolute 
           left-1/2 
-          top-[15%] 
+          top-[20%] 
+          sm:top-[10%]
+          md:top-[5%]
+          lg:top-[-2%]
           -translate-x-1/2 
-          w-50 h-50
-          md:w-70 md:h-70 
-          z-50 
+          w-[200px] h-[240px]
+          sm:w-[280px] sm:h-[330px]
+          md:w-[350px] md:h-[410px]
+          lg:w-[430px] lg:h-[500px]
+          z-20
           pointer-events-none
         "
         animate={{ y: [0, -55, 0] }}
@@ -56,94 +62,109 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 relative z-10 text-center">
         <div className="mb-8 relative">
           {/* Titre ANGOAKA avec lettres SVG individuelles */}
-          <div className=" mt-28 flex justify-center items-center gap-2 md:gap-4">
+          <div className="mt-8 flex justify-center items-center gap-2 md:gap-4 relative">
             {letters.map((letter, index) => (
               <motion.div
                 key={index}
                 className={`
                   relative 
-                  w-12 h-16 
+                  w-12 h-16
                   md:w-20 md:h-24 
                   lg:w-24 lg:h-28
                   cursor-pointer
-                  transition-all duration-300
-                  filter
-                  ${hoveredIndex === index ? 'drop-shadow-[0_0_15px_rgba(220,38,38,0.8)]' : 'drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]'}
                 `}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{
-                  scale: 1.15,
-                  y: -10,
-                  zIndex: 50,
-                  transition: { duration: 0.3 }
-                }}
-                initial={{ opacity: 0, y: 30, rotate: -5 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: 1,
-                  y: 0,
-                  rotate: 0,
-                  ...(hoveredIndex === index && {
-                    rotate: [0, -10, 10, 0],
-                    scale: [1, 1.2, 1.15],
-                  })
+                  y: hoveredIndex === index ? -58 : 0,
                 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  rotate: { duration: 0.5, repeat: Infinity, repeatDelay: 0.2 }
+                  type: 'spring',
+                  stiffness: 180,
+                  damping: 18,
+                  mass: 0.7,
                 }}
               >
-                {/* Image SVG */}
-                <motion.img
-                  src={`/assets/images/${letter.file}`}
-                  alt={letter.char}
-                  className="w-full h-full object-contain"
-                  animate={hoveredIndex === index ? {
-                    filter: [
-                      'brightness(1)',
-                      'brightness(1.5)',
-                      'brightness(1)'
-                    ]
-                  } : {}}
-                  transition={{ duration: 0.5 }}
-                />
-
-                {/* Effet de particules au survol */}
-                {hoveredIndex === index && (
-                  <>
-                    <motion.div
-                      className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
-                      transition={{ duration: 0.8 }}
-                    />
-                    <motion.div
-                      className="absolute -bottom-2 -left-2 w-3 h-3 bg-red-400 rounded-full"
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                    />
-                  </>
-                )}
-
-                {/* Effet de halo */}
-                {hoveredIndex === index && (
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(220,38,38,0.4) 0%, transparent 70%)'
+                {/* Conteneur qui ne bouge pas - positioning context pour la lettre ET portfolio */}
+                <div className="relative w-full h-full">
+                  {/* Image SVG - celle-ci bouge avec le motion.div parent */}
+                  <motion.img
+                    src={`/assets/images/${letter.file}`}
+                    alt={letter.char}
+                    className="w-full h-full object-contain"
+                    style={{ scale: letter.scale }}
+                    animate={{
+                      filter:
+                        hoveredIndex === index
+                          ? "brightness(1.3)"
+                          : "brightness(1)"
                     }}
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={{ scale: 1.2, opacity: [0, 0.8, 0] }}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                   />
+
+                  {/* Effet de particules au survol */}
+                  {hoveredIndex === index && (
+                    <>
+                      <motion.div
+                        className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+                        transition={{ duration: 0.8 }}
+                      />
+                      <motion.div
+                        className="absolute -bottom-2 -left-2 w-3 h-3 bg-red-400 rounded-full"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                      />
+                    </>
+                  )}
+
+                  {/* Effet de halo */}
+                  {hoveredIndex === index && (
+                    <motion.div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'radial-gradient(circle, rgba(220,38,38,0.4) 0%, transparent 70%)'
+                      }}
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      animate={{ scale: 1.2, opacity: [0, 0.8, 0] }}
+                      transition={{ duration: 1 }}
+                    />
+                  )}
+                </div>
+
+                {/* PORTFOLIO - Desktop: sous le dernier A */}
+                {index === letters.length - 1 && (
+                  <motion.div 
+                    className="hidden md:block absolute left-1/2 top-full mt-2 -translate-x-1/2 text-sm tracking-[0.2em] text-white pointer-events-none font-bold"
+                    initial={{ y: 0 }}
+                    animate={{ y: hoveredIndex === index ? 58 : 0 }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 180,
+                      damping: 18,
+                      mass: 0.7,
+                    }}
+                  >
+                    PORTFOLIO
+                  </motion.div>
                 )}
               </motion.div>
             ))}
-          </div>
-
-
+            
+            {/* PORTFOLIO - Mobile: centré sous toutes les lettres */}
+            <motion.div 
+              className="md:hidden absolute left-1/2 top-full mt-4 -translate-x-1/2 text-xs tracking-[0.2em] text-white pointer-events-none font-bold whitespace-nowrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              PORTFOLIO
+            </motion.div>
+          </div>        
         </div>
 
         {/* Texte descriptif */}
@@ -152,7 +173,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.5 }}
         >
-          <div className='mt-16'>
+          <div className='mt-20'>
             <p className="text-white text-xl md:text-2xl mb-4 font-light ">
               From idea to scalable digital products.
             </p>
@@ -165,12 +186,12 @@ export default function HeroSection() {
 
         {/* Boutons */}
         <motion.div
-          className="w-full flex justify-center"
+          className="w-full flex justify-center "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.5 }}
         >
-          <div className="flex items-center justify-center gap-4 flex-wrap">
+          <div className="mt-16 flex items-center justify-center gap-4 flex-wrap">
 
             <button className="h-11 text-white px-6 py-1.5 rounded-md bg-[#E00216] transition flex items-center gap-2 shadow-md mr-6 md:mr-8">
               <span>Get started</span>
