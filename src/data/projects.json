@@ -1,0 +1,123 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Site E-commerce",
+      "category": "web",
+      "description": "Plateforme de vente en ligne avec paiement sécurisé et système de gestion d'inventaire.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 2,
+      "title": "Application Mobile",
+      "category": "mobile",
+      "description": "App de gestion de tâches avec notifications push et synchronisation cloud.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 3,
+      "title": "Dashboard Analytics",
+      "category": "web",
+      "description": "Tableau de bord avec visualisation de données en temps réel et rapports automatisés.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2023"
+    },
+    {
+      "id": 4,
+      "title": "Logo Design",
+      "category": "design",
+      "description": "Identité visuelle complète pour une startup tech innovante.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2023"
+    },
+    {
+      "id": 5,
+      "title": "API REST",
+      "category": "backend",
+      "description": "API scalable avec authentification JWT, documentation Swagger et monitoring.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 6,
+      "title": "UI/UX Redesign",
+      "category": "design",
+      "description": "Refonte complète de l'expérience utilisateur avec tests A/B et prototypage.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 7,
+      "title": "SaaS Platform",
+      "category": "web",
+      "description": "Plateforme SaaS multi-tenant avec facturation et gestion d'équipes.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 8,
+      "title": "IoT Dashboard",
+      "category": "iot",
+      "description": "Dashboard pour monitoring d'appareils IoT avec alertes en temps réel.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2023"
+    },
+    {
+      "id": 9,
+      "title": "Chatbot AI",
+      "category": "ai",
+      "description": "Chatbot intelligent avec traitement du langage naturel et intégration CRM.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 10,
+      "title": "CRM System",
+      "category": "web",
+      "description": "Système de gestion de la relation client avec analytique avancée.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2024"
+    },
+    {
+      "id": 11,
+      "title": "Game Mobile",
+      "category": "mobile",
+      "description": "Jeux mobile avec graphiques 3D et multi-joueurs en ligne.",
+      "image": "/assets/projects/1.jpg",
+      "link": "#",
+      "year": "2023"
+    },
+    {
+      "id": 12,
+      "title": "Blockchain Wallet",
+      "category": "blockchain",
+      "description": "Portefeuille crypto avec sécurité avancée et support multi-chaînes.",
+      "image": "/assets/projects/1.jpg",
+      "tags": ["Solidity", "Web3.js", "Ethereum", "IPFS"],
+      "link": "#",
+      "year": "2024"
+    }
+  ],
+  "categories": [
+    { "id": "all", "label": "All Projects", "count": 12 },
+    { "id": "web", "label": "Web Development", "count": 5 },
+    { "id": "mobile", "label": "Mobile Apps", "count": 2 },
+    { "id": "design", "label": "UI/UX Design", "count": 2 },
+    { "id": "backend", "label": "Backend", "count": 1 },
+    { "id": "iot", "label": "IoT", "count": 1 },
+    { "id": "ai", "label": "AI/ML", "count": 1 },
+    { "id": "blockchain", "label": "Blockchain", "count": 1 }
+  ]
+}

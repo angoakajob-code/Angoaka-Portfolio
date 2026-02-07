@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import Header from './components/layout/Header';
 import SocialSidebar from './components/layout/SocialSidebar';
@@ -7,7 +6,9 @@ import StatsSection from './components/sections/StatsSection';
 import AboutSection from './components/sections/AboutSection';
 import ToolsSection from './components/sections/ToolsSection';
 import ServicesSection from './components/sections/ServicesSection';
-import Footer from './components/layout/Footer'; 
+import ProjectsSection from './components/sections/ProjectsSection'; 
+import Footer from './components/layout/Footer';
+import CallToActionSection from './components/sections/CallToActionSection ';
 
 export default function App() {
   return (
@@ -20,8 +21,10 @@ export default function App() {
         <AboutSection />
         <ToolsSection />
         <ServicesSection />
+        <ProjectsSection />
+        <CallToActionSection />
       </main>
-      <Footer /> 
+      <Footer />
     </div>
   );
 }
