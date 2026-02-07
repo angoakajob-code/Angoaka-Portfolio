@@ -4,14 +4,15 @@ import { motion } from 'framer-motion';
 export default function HeroSection() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const letters = [
-    { char: 'A', file: 'A.svg' },
-    { char: 'N', file: 'N.svg' },
-    { char: 'G', file: 'G.svg' },
-    { char: 'O', file: 'O.svg' },
-    { char: 'A', file: 'A.svg' },
-    { char: 'K', file: 'K.svg' },
-    { char: 'A', file: 'A.svg' }
-  ];
+  { char: 'A', file: 'A.svg', scale: 1 },
+  { char: 'N', file: 'N.svg', scale: 0.95 },
+  { char: 'G', file: 'G.svg', scale: 1.1 },
+  { char: 'O', file: 'O.svg', scale: 1.15 },
+  { char: 'A', file: 'A.svg', scale: 1 },
+  { char: 'K', file: 'K.svg', scale: 0.97 },
+  { char: 'A', file: 'A.svg', scale: 1 }
+];
+
 
   return (
     <section
@@ -33,9 +34,8 @@ export default function HeroSection() {
           left-1/2 
           top-[15%] 
           -translate-x-1/2 
-          w-50 h-50
-          md:w-70 md:h-70 
-          z-50 
+          w-[430px] h-[500px]
+          z-50
           pointer-events-none
         "
         animate={{ y: [0, -55, 0] }}
@@ -66,32 +66,19 @@ export default function HeroSection() {
                   md:w-20 md:h-24 
                   lg:w-24 lg:h-28
                   cursor-pointer
-                  transition-all duration-300
-                  filter
-                  ${hoveredIndex === index ? 'drop-shadow-[0_0_15px_rgba(220,38,38,0.8)]' : 'drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]'}
                 `}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{
-                  scale: 1.15,
-                  y: -10,
-                  zIndex: 50,
-                  transition: { duration: 0.3 }
-                }}
-                initial={{ opacity: 0, y: 30, rotate: -5 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{
                   opacity: 1,
-                  y: 0,
-                  rotate: 0,
-                  ...(hoveredIndex === index && {
-                    rotate: [0, -10, 10, 0],
-                    scale: [1, 1.2, 1.15],
-                  })
+                  y: hoveredIndex === index ? -58 : 0,
                 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  rotate: { duration: 0.5, repeat: Infinity, repeatDelay: 0.2 }
+                  type: 'spring',
+                  stiffness: 180,
+                  damping: 18,
+                  mass: 0.7,
                 }}
               >
                 {/* Image SVG */}
@@ -99,14 +86,14 @@ export default function HeroSection() {
                   src={`/assets/images/${letter.file}`}
                   alt={letter.char}
                   className="w-full h-full object-contain"
-                  animate={hoveredIndex === index ? {
-                    filter: [
-                      'brightness(1)',
-                      'brightness(1.5)',
-                      'brightness(1)'
-                    ]
-                  } : {}}
-                  transition={{ duration: 0.5 }}
+                  style={{ scale: letter.scale }}
+                  animate={{
+                    filter:
+                      hoveredIndex === index
+                        ? "brightness(1.3)"
+                        : "brightness(1)"
+                  }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                 />
 
                 {/* Effet de particules au survol */}
@@ -143,6 +130,9 @@ export default function HeroSection() {
             ))}
           </div>
 
+          <div className="mt-2 text-sm tracking-[0.4em] text-white">
+            PORTFOLIO
+          </div>
 
         </div>
 
