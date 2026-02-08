@@ -63,7 +63,8 @@ export default function HeroSection() {
                   key={index}
                   className={`
                     relative 
-                    w-12 h-16
+                    w-8 h-12
+                    sm:w-15 sm:h-15
                     md:w-20 md:h-24 
                     lg:w-24 lg:h-28
                     cursor-pointer
