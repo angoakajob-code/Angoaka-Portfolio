@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { STATS } from '../../utils/constants';
+
+// Importez votre fichier JSON
+import data from '../../data/projects.json';
 
 function StatCard({ label, value }) {
   return (
@@ -23,22 +25,70 @@ function StatCard({ label, value }) {
 }
 
 export default function StatsSection() {
-  const [counts, setCounts] = useState(
-    STATS.reduce((acc, stat) => ({ ...acc, [stat.label]: 0 }), {})
-  );
+  const [stats, setStats] = useState([]);
+  const [counts, setCounts] = useState({});
+
+  // Calculez les 3 statistiques principales
+  const calculateStats = () => {
+    const projects = data.projects;
+    
+    // 1. Projets terminés (basé sur le status)
+    const completedProjects = projects.filter(project => 
+      ["Completed", "Live on App Store", "Deployed", "Delivered", 
+       "In Production", "Implemented", "MVP Launched", "Published on Stores"]
+      .includes(project.status)
+    ).length;
+    
+    // 2. Années d'expérience (toujours 5)
+    const yearsExperience = 5;
+    
+    // 3. Nombre de pays différents
+    const countries = [...new Set(projects.map(project => project.country))];
+    const countriesCount = countries.length;
+
+    return [
+      {
+        label: "Projets Terminés",
+        value: completedProjects
+      },
+      {
+        label: "Années d'Expérience", 
+        value: yearsExperience
+      },
+      {
+        label: "Pays Collaborés",
+        value: countriesCount
+      }
+    ];
+  };
 
   useEffect(() => {
+    // Calculez les statistiques au chargement
+    const calculatedStats = calculateStats();
+    setStats(calculatedStats);
+    
+    // Initialisez les compteurs à 0
+    const initialCounts = calculatedStats.reduce((acc, stat) => ({
+      ...acc,
+      [stat.label]: 0
+    }), {});
+    setCounts(initialCounts);
+  }, []);
+
+  useEffect(() => {
+    if (stats.length === 0) return;
+
     const duration = 2000;
     const steps = 60;
     const interval = duration / steps;
-    const targets = STATS.reduce((acc, stat) => ({ ...acc, [stat.label]: stat.value }), {});
+    const targets = stats.reduce((acc, stat) => ({ ...acc, [stat.label]: stat.value }), {});
     let step = 0;
 
     const timer = setInterval(() => {
       step++;
       const progress = step / steps;
       const newCounts = {};
-      STATS.forEach(stat => {
+      stats.forEach(stat => {
         newCounts[stat.label] = Math.floor(stat.value * progress);
       });
       setCounts(newCounts);
@@ -50,7 +100,7 @@ export default function StatsSection() {
     }, interval);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [stats]);
 
   return (
     <section className="mt-7.5 pb-20 relative">
@@ -60,11 +110,11 @@ export default function StatsSection() {
           <div className="p-12 rounded-2xl bg-linear-to-br  backdrop-blur-2xl shadow-2xl shadow-black/30">
             {/* Grille centrée */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center">
-              {STATS.map((stat, index) => (
+              {stats.map((stat, index) => (
                 <div key={index} className="w-full max-w-xs">
                   <StatCard
                     label={stat.label}
-                    value={counts[stat.label]}
+                    value={counts[stat.label] || 0}
                   />
                 </div>
               ))}

@@ -7,7 +7,7 @@ const SERVICES = [
     title: "ux/ui design",
     icon: Palette,
     description:
-      "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown",
+      "We design intuitive, accessible, and user-centered interfaces that solve real problems and create meaningful digital experiences.",
     bgColor: "bg-[#E00216]",
     rotation: "-6deg"
   },
@@ -15,7 +15,7 @@ const SERVICES = [
     title: "Front-end",
     icon: Code2,
     description:
-      "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown",
+      "We build fast, responsive, and scalable interfaces that bring designs to life with clean, modern code.",
     bgColor: "bg-[#2a2a2a]",
     rotation: "0deg"
   },
@@ -23,7 +23,7 @@ const SERVICES = [
     title: "Back-end",
     icon: Network,
     description:
-      "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown",
+      "We develop secure and reliable systems that power your product, manage data, and scale with your business.",
     bgColor: "bg-[#2a2a2a]",
     rotation: "0deg"
   },
@@ -31,7 +31,7 @@ const SERVICES = [
     title: "Artificial Intelligence",
     icon: Wrench,
     description:
-      "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown",
+      "We integrate intelligent solutions that automate processes, enhance decision-making, and unlock the value of your data.",
     bgColor: "bg-[#2a2a2a]",
     rotation: "0deg"
   }
@@ -45,6 +45,7 @@ function ServiceCard({ title, icon: Icon, description, bgColor, index }) {
       whileHover={{
         rotate: 0,
         scale: 1.05,
+        height: "auto", // Augmente la hauteur au survol
         boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)"
       }}
       transition={{
@@ -54,7 +55,7 @@ function ServiceCard({ title, icon: Icon, description, bgColor, index }) {
         delay: index * 0.1
       }}
       viewport={{ once: true }}
-      className={`${bgColor} p-8 rounded-2xl cursor-pointer shadow-2xl flex flex-col`}
+      className={`${bgColor} p-8 rounded-2xl cursor-pointer shadow-2xl flex flex-col min-h-[200px] md:min-h-[220px] lg:min-h-[240px]`}
     >
       <div className="flex items-center gap-4 mb-6">
         <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
@@ -63,7 +64,7 @@ function ServiceCard({ title, icon: Icon, description, bgColor, index }) {
         </h3>
       </div>
 
-      <p className="text-white text-sm leading-relaxed grow">
+      <p className="text-gray-300 text-sm leading-relaxed grow">
         {description}
       </p>
     </motion.div>
@@ -107,8 +108,9 @@ export default function ServicesSection() {
               <h2 className="text-white text-4xl font-bold mb-4 uppercase">
                 OUR SERVICES
               </h2>
-              <p className="text-gray-400">
-                Short Description
+              <p className="text-gray-300">
+                Our expertise, working together
+                to build real products.
               </p>
             </div>
 
