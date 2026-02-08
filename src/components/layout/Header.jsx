@@ -92,16 +92,6 @@ export default function Header() {
         {/* Menu panel */}
         <div className={`absolute top-0 right-0 h-full w-64 bg-linear-to-b from-gray-900 to-gray-950 shadow-xl transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex flex-col h-full pt-20 px-6">
-            {/* Fermer bouton */}
-            <button
-              className="absolute top-6 right-6 text-white"
-              onClick={() => setIsMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
 
             {/* Navigation mobile */}
             <nav className="flex flex-col gap-6 mb-8">
