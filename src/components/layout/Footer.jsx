@@ -1,6 +1,6 @@
 // Footer.jsx - Version simplifiée
 import React from 'react';
-import AngoakaLogo from '/assets/images/logo red.png';
+import AngoakaLogo from '/assets/images/logo blanc(1).png';
 
 const Footer = () => {
   return (
