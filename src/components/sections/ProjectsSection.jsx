@@ -259,7 +259,7 @@ const ProjectsSection = () => {
         <div className="relative mt-16 mb-20">
           <div className="relative">
             {/* Icône V */}
-            <div className="absolute left-1/2 -translate-x-1/2 -top-10 w-20 h-20 z-10">
+            <div className="absolute left-1/2 -translate-x-1/2 -top-6 sm:-top-8 md:-top-10 w-13 h-13 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 z-10">
               <div className="relative w-full h-full">
                 <div className="absolute inset-0 bg-[#565656] rounded-full"></div>
                 <img
@@ -271,13 +271,33 @@ const ProjectsSection = () => {
             </div>
 
             {/* Carte */}
-            <div className="bg-[#2C2C2C] rounded-2xl w-full max-w-350 h-55 flex items-center justify-center px-12 md:px-16 mx-auto shadow-xl">
-              <p className="text-gray-300 text-xl leading-relaxed text-center max-w-4xl">
+        <div className="
+                      bg-[#2C2C2C]
+                      rounded-2xl
+                      w-full
+                      max-w-275
+                      mx-auto
+                      shadow-xl
+                      px-4 sm:px-6 md:px-10 lg:px-16
+                      py-6 sm:py-8 md:py-10
+                    "
+                  >
+                  <p
+                    className="
+                      text-gray-300
+                      text-sm sm:text-base md:text-lg lg:text-xl
+                      leading-relaxed
+                      text-center
+                      max-w-4xl
+                      mx-auto
+                    "
+                  >
                 We believe great products are built through trust and collaboration.
                 We listen, adapt, and work closely with our clients to deliver reliable,
                 high-quality digital solutions that support their growth.
               </p>
-            </div>
+        </div>
+
           </div>
         </div>
       </div>
