@@ -43,8 +43,8 @@ export default function ToolsSection() {
     <section className="py-25 relative bg-linear-to-r from-[#2C2C2C] via-[#2F2F2F] to-[#1A1A1A] " >
       <div className="container mx-auto px-6">
         <h2 className="text-white text-4xl md:text-5xl font-bold text-center mb-12 relative">
-          <div className="absolute -top-10 -bottom-5 left-1/2 -translate-x-1/2 w-200 h-60 bg-red-80 blur-3xl opacity-40"></div>
-          <div className="absolute -top-5 -bottom-5 left-1/2 -translate-x-1/2 w-100 h-40 bg-red-100 blur-2xl opacity-40"></div>
+          <div className="absolute -top-10 -bottom-5 left-1/2 -translate-x-1/2 w-50 h-30 bg-red-80 blur-3xl opacity-40"></div>
+          <div className="absolute -top-5 -bottom-5 left-1/2 -translate-x-1/2 w-30 h-10 bg-red-100 blur-2xl opacity-40"></div>
           <span className="relative z-10">TECNO & TOOLS</span>
         </h2>
         
