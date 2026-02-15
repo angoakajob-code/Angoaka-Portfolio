@@ -5,17 +5,20 @@ import data from '../../data/projects.json';
 
 function StatCard({ label, value }) {
   return (
-    <div className="h-32  border-gray-800 p-8 rounded-lg text-center relative overflow-hidden hover:border-gray-700 transition-all duration-300 flex flex-col justify-center items-center mx-auto w-full">
-      {/* Glassmorphism avec contraste */}
-      <div className="absolute inset-0 bg-linear-to-br from-gray-900/70 to-gray-800/50 backdrop-blur-xl border border-gray-700/30"></div>
+    <div className="h-32 border-gray-100 p-8 rounded-lg text-center relative overflow-hidden hover:border-gray-80 transition-all duration-300 flex flex-col justify-center items-center mx-auto w-full">
+      {/* Glassmorphism avec contraste gris */}
+      <div className="absolute inset-0 bg-linear-to-br from-bg-gray-100 to-bg-gray-80 backdrop-blur-xl border border-gray-100/10 rounded-lg"></div>
+      
       {/* Effet de brillance pour le glassmorphism */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-br from-transparent via-gray-500/20 to-transparent"></div>
-      {/* Effet de lueur rouge en bas */}
-      <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 h-12 bg-red-500 blur-3xl"></div>
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-8 bg-red-600 blur-2xl"></div>
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-500/20 to-transparent"></div>
+      
+      {/* Effet de lueur rouge en bas - RÉDUIT */}
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-10 h-14 bg-red-50 blur-2xl opacity-50"></div>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-red-100 blur-xl opacity-80"></div>
+      
       {/* Contenu centré */}
       <div className="relative z-10 w-full">
-        <p className="text-gray-300 text-sm mb-5  tracking-wider font-medium">{label}</p>
+        <p className="text-gray-300 text-sm mb-5 tracking-wider font-medium">{label}</p>
         <p className="text-white text-6xl md:text-7xl font-bold tracking-tighter">
           {value.toString().padStart(2, '0')}+
         </p>
@@ -48,15 +51,15 @@ export default function StatsSection() {
 
     return [
       {
-        label: "Projets Terminés",
+        label: "Projets",
         value: completedProjects
       },
       {
-        label: "Années d'Expérience", 
+        label: "Years of experience", 
         value: yearsExperience
       },
       {
-        label: "Pays Collaborés",
+        label: "Intervening country",
         value: countriesCount
       }
     ];
@@ -105,14 +108,15 @@ export default function StatsSection() {
   return (
     <section className="mt-7.5 pb-20 relative">
       <div className="container mx-auto px-4">
-        {/* Container centré avec glassmorphism visible */}
+        {/* Container centré avec glassmorphism gris-rouge */}
         <div className="max-w-5xl mx-auto">
-          <div className="p-12 rounded-2xl bg-linear-to-br  backdrop-blur-2xl shadow-2xl shadow-black/30">
+          <div className="p-12 rounded-2xl bg-gray-150/80 backdrop-blur-2xl shadow-2xl shadow-black/30">
             {/* Grille centrée */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center">
               {stats.map((stat, index) => (
                 <div key={index} className="w-full max-w-xs">
-                  <StatCard
+                  <StatCard 
+                    className="md-15 mt-12 "
                     label={stat.label}
                     value={counts[stat.label] || 0}
                   />

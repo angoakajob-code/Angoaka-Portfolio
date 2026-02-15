@@ -88,7 +88,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section className="relative py-2">
+    <section className="relative py-12">
       <div className="container mx-auto px-6">
         {/* Conteneur centré avec max-width */}
         <motion.div
@@ -190,19 +190,7 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* Arrière-plan décoratif */}
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-red-600/5 rounded-full blur-3xl"
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-64 h-64 bg-red-600/5 rounded-full blur-3xl"
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-        />
+        
       </div>
     </section>
   );

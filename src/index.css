@@ -21,6 +21,7 @@ html {
   --red-l1 : #B61C24;
   --red-l2 : #FC0006;
 
+  --gray-150: #2F2F2F;
   --gray-100: #2C2C2C;
   --gray-80: #565656;
   --gray-50: #969696;
@@ -42,7 +43,7 @@ html {
 .bg-red-10 { background-color: var(--red-10); }
 .bg-red-5 { background-color: var(--red-5); }
 
-
+.bg-gray-150 { background-color: var(--gray-150); }
 .bg-gray-100 { background-color: var(--gray-100); }
 .bg-gray-80 { background-color: var(--gray-80); }
 .bg-gray-50 { background-color: var(--gray-50); }

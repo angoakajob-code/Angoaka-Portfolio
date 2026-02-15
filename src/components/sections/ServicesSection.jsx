@@ -82,7 +82,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section className="py-20 relative bg-[#1a1a1a]">
+    <section className="py-20 relative bg-linear-to-r from-[#2C2C2C] via-[#2F2F2F] to-[#1A1A1A]">
 
       {/* Container */}
       <div className="max-w-6xl mx-auto px-6 relative">
