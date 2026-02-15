@@ -144,7 +144,7 @@ export default function AboutSection() {
               <motion.p
                 variants={paragraphVariants}
                 custom={0}
-                className="text-gray-100 mb-12 text-base leading-relaxed"
+                className="text-white mb-12 text-base leading-relaxed"
               >
                 We transform ideas into scalable digital solutions through cutting-edge technology and innovative design. Our team combines expertise in UI/UX design, full-stack development, AI, and DevOps to deliver exceptional results.
                 With 4 years of experience and a passion for technology, we help businesses and individuals bring their digital visions to life.
@@ -161,7 +161,7 @@ export default function AboutSection() {
                 <motion.p
                   variants={paragraphVariants}
                   custom={2}
-                  className="text-gray-100 leading-relaxed text-base"
+                  className="text-white leading-relaxed text-base"
                 >
                   A team of geeks from the same city, represented by a cicada named ANGOAKA. Each of us is an expert in a specific area of technology, such as UX/UI design, front-end development, back-end development, full stack, AI, and dev ops. So we decided to join forces.
                 </motion.p>

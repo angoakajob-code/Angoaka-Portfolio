@@ -55,7 +55,7 @@ function ServiceCard({ title, icon: Icon, description, bgColor, index }) {
         delay: index * 0.1
       }}
       viewport={{ once: true }}
-      className={`${bgColor} p-8 rounded-2xl cursor-pointer shadow-2xl flex flex-col min-h-[200px] md:min-h-[220px] lg:min-h-[240px]`}
+      className={`${bgColor} p-8 rounded-2xl cursor-pointer shadow-2xl flex flex-col min-h-50 md:min-h-55 lg:min-h-60`}
     >
       <div className="flex items-center gap-4 mb-6">
         <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
@@ -64,7 +64,7 @@ function ServiceCard({ title, icon: Icon, description, bgColor, index }) {
         </h3>
       </div>
 
-      <p className="text-gray-300 text-sm leading-relaxed grow">
+      <p className={`${index === 0 ? 'text-white' : 'text-gray-50'} text-sm leading-relaxed grow`}>
         {description}
       </p>
     </motion.div>
@@ -108,7 +108,7 @@ export default function ServicesSection() {
               <h2 className="text-white text-4xl font-bold mb-4 uppercase">
                 OUR SERVICES
               </h2>
-              <p className="text-gray-300">
+              <p className="text-white">
                 Our expertise, working together
                 to build real products.
               </p>

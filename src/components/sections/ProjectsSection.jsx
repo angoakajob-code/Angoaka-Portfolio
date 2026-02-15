@@ -91,7 +91,7 @@ const ProjectsSection = () => {
         {/* En-tête de section */}
         <div className="text-center mb-16 relative">
           <h2 className="text-xl md:text-xl lg:text-2xl font-bold text-white mb-4 relative">
-            OUR <span className="text-[#FF0218]">PROJECTS</span>
+            OUR <span className="text-red-100]">PROJECTS</span>
             <div className="absolute -bottom-9 left-1/2 transform -translate-x-1/2 w-32 h-6 opacity-80">
               <svg width="100%" height="100%" viewBox="0 0 128 24" preserveAspectRatio="none">
                 <path
@@ -127,7 +127,7 @@ const ProjectsSection = () => {
             </div>
           </h2>
 
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto mt-8">
+          <p className="text-white text-lg max-w-2xl mx-auto mt-8">
             Our work showcases how we turn ideas into functional, scalable digital products through design, engineering, and collaboration.
           </p>
         </div>
@@ -149,8 +149,8 @@ const ProjectsSection = () => {
                 }}
                 className={`px-6 h-12 rounded-xl transition-all duration-300 font-medium flex items-center justify-center gap-2 ${
                   activeFilter === category.id
-                    ? 'bg-[#C4171F] text-white shadow-lg shadow-red-500/20'
-                    : 'bg-[#565656]/80 backdrop-blur-sm text-gray-300 hover:bg-gray-700/80 hover:text-white'
+                    ? 'bg-red-100 text-white shadow-lg shadow-red-500/20'
+                    : 'bg-gray-80 backdrop-blur-sm text-white hover:bg-gray-80 hover:text-white'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -204,19 +204,19 @@ const ProjectsSection = () => {
                     {project.title}
                   </h3>
                   {project.subtitle && (
-                    <p className="text-sm text-gray-400 line-clamp-1">{project.subtitle}</p>
+                    <p className="text-sm text-white line-clamp-1">{project.subtitle}</p>
                   )}
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                <p className="text-white text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
 
                 {/* Technologies (premières 3) */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.skills.slice(0, 3).map((skill, i) => (
-                    <span key={i} className="px-2 py-1 bg-[#3A3A3A] text-gray-300 text-xs rounded">
+                    <span key={i} className="px-2 py-1 text-gray-50 text-xs rounded">
                       {skill}
                     </span>
                   ))}
@@ -229,7 +229,7 @@ const ProjectsSection = () => {
         {/* Message si aucun projet */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-300 text-lg">
+            <p className="text-gray-50 text-lg">
               No projects found in this category.
             </p>
           </div>
@@ -240,7 +240,7 @@ const ProjectsSection = () => {
           <div className="text-center">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="px-8 py-3.5 border-2 border-[#C4171F] bg-transparent text-white rounded-xl font-semibold hover:bg-red-900/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto backdrop-blur-sm"
+              className="px-8 py-3.5 border-2 border-red-100 bg-transparent text-white rounded-xl font-semibold hover:bg-red-80/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto backdrop-blur-sm"
             >
               {showAll ? 'Show Less' : 'View More'}
               <svg
@@ -261,7 +261,7 @@ const ProjectsSection = () => {
             {/* Icône V */}
             <div className="absolute left-1/2 -translate-x-1/2 -top-6 sm:-top-8 md:-top-10 w-13 h-13 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 z-10">
               <div className="relative w-full h-full">
-                <div className="absolute inset-0 bg-[#565656] rounded-full"></div>
+                <div className="absolute inset-0 bg-gray-80 rounded-full"></div>
                 <img
                   src={SubtractIcon}
                   alt="V Icon"
@@ -272,7 +272,7 @@ const ProjectsSection = () => {
 
             {/* Carte */}
         <div className="
-                      bg-[#2C2C2C]
+                      bg-gray-100
                       rounded-2xl
                       w-full
                       max-w-275
@@ -284,7 +284,7 @@ const ProjectsSection = () => {
                   >
                   <p
                     className="
-                      text-gray-300
+                      text-white
                       text-sm sm:text-base md:text-lg lg:text-xl
                       leading-relaxed
                       text-center

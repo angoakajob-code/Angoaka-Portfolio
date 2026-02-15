@@ -137,11 +137,11 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                       <div className="mb-8">
                         <div className="flex items-center gap-2 mb-4">
                           <div className="w-8 h-8 rounded-lg  flex items-center justify-center">
-                            <Briefcase className="w-4 h-4 text-[#E00216]" />
+                            <Briefcase className="w-4 h-4 text-red-100" />
                           </div>
                           <h4 className="text-xl font-semibold text-white">Project Overview</h4>
                         </div>
-                        <div className="space-y-4 text-gray-300 pl-4 border-l-2 border-[#E00216]/30">
+                        <div className="space-y-4 text-gray-20 pl-4 border-l-2 border-[#E00216]/30">
                           <p className="leading-relaxed">
                             {project.detailedDescription || project.description}
                           </p>
@@ -152,12 +152,12 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                       <div className="mb-8">
                         <div className="flex items-center gap-2 mb-4">
                           <div className="w-8 h-8 rounded-lg  flex items-center justify-center">
-                            <Layers className="w-4 h-4 text-[#E00216]" />
+                            <Layers className="w-4 h-4 text-red-100" />
                           </div>
                           <h4 className="text-xl font-semibold text-white">Key Functionality</h4>
                         </div>
                         <div className="pl-4">
-                          <p className="text-gray-300 mb-6 leading-relaxed">
+                          <p className="text-gray-20 mb-6 leading-relaxed">
                             {project.functionality}
                           </p>
 
@@ -181,7 +181,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                       <div className="mb-6">
                         <div className="flex items-center gap-2 mb-4">
                           <div className="w-8 h-8 rounded-lg  flex items-center justify-center">
-                            <Code className="w-4 h-4 text-[#E00216]" />
+                            <Code className="w-4 h-4 text-red-100" />
                           </div>
                           <h4 className="text-xl font-semibold text-white">Technologies & Skills</h4>
                         </div>
@@ -194,7 +194,7 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: index * 0.05 }}
-                                className="inline-flex items-center gap-2 bg-[#FF0218] text-gray-300 px-4 py-2 rounded-lg hover:bg-[#3A3A3A] transition-colors"
+                                className="inline-flex items-center gap-2 bg-red-100 text-white px-4 py-2 rounded-lg hover:bg-[#3A3A3A] transition-colors"
                               >
                                 {skill}
                               </motion.span>
@@ -219,12 +219,12 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                           transition={{ delay: 0.1 }}
                           className="flex items-center gap-3 p-3 bg-[#2A2A2A] rounded-lg hover:bg-[#3A3A3A] transition-colors"
                         >
-                          <div className="w-10 h-10 rounded-lg  flex items-center justify-center flex-shrink-0">
-                            <Clock className="w-5 h-5 text-[#E00216]" />
+                          <div className="w-10 h-10 rounded-lg  flex items-center justify-center shrink-0">
+                            <Clock className="w-5 h-5 text-white" />
                           </div>
                           <div>
                             <p className="text-white font-medium">Duration</p>
-                            <p className="text-gray-400 text-sm">{project.duration}</p>
+                            <p className="text-gray-50 text-sm">{project.duration}</p>
                           </div>
                         </motion.div>
 
@@ -235,13 +235,13 @@ const ProjectModal = ({ isOpen, onClose, project }) => {
                           transition={{ delay: 0.3 }}
                           className="flex items-center gap-3 p-3 bg-[#2A2A2A] rounded-lg hover:bg-[#3A3A3A] transition-colors"
                         >
-                          <div className="w-10 h-10 rounded-lg  flex items-center justify-center flex-shrink-0">
-                            <MapPin className="w-5 h-5 text-[#E00216]" />
+                          <div className="w-10 h-10 rounded-lg  flex items-center justify-center shrink-0">
+                            <MapPin className="w-5 h-5 text-white" />
                           </div>
                           <div>
                             <p className="text-white font-medium">Location</p>
-                            <p className="text-gray-400 text-sm">{project.location}</p>
-                            <p className="text-gray-400 text-xs">{project.locationDetail}</p>
+                            <p className="text-gray-50 text-sm">{project.location}</p>
+                            <p className="text-gray-50 text-xs">{project.locationDetail}</p>
                           </div>
                         </motion.div>
                       </div>
