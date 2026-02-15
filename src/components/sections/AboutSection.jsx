@@ -88,7 +88,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="relative py-2">
+    <section className="relative py-2">
       <div className="container mx-auto px-6">
         {/* Conteneur centré avec max-width */}
         <motion.div

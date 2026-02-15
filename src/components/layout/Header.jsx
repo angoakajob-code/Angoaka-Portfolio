@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NAVIGATION_LINKS } from '../../utils/constants';
+import { Home } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -11,8 +13,35 @@ export default function Header() {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Par celui-ci qui détecte les sections :
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    
+    // Détecter la section visible
+    const sections = document.querySelectorAll('section[id]');
+    let currentSection = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (window.scrollY >= sectionTop - 200) {
+        currentSection = section.getAttribute('id');
+      }
+    });
+
+    setActiveSection(currentSection);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Appel initial
+      return () => window.removeEventListener('scroll', handleScroll);
+   }, []);
 
   // Empêche le défilement quand le menu mobile est ouvert
   useEffect(() => {
@@ -25,6 +54,26 @@ export default function Header() {
       document.body.style.overflow = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+ // Fonction pour vérifier si le lien est actif
+  const isActiveLink = (href) => {
+    const sectionId = href.replace('#', '');
+    return activeSection === sectionId;
+  };
+
+
+  // Ajoutez cette nouvelle fonction après isActiveLink :
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    const sectionId = href.replace('#', '');
+    const section = document.getElementById(sectionId);
+    
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <>
@@ -48,19 +97,24 @@ export default function Header() {
               <a
                 key={index}
                 href={link.href}
-                className={`font-medium hover:text-[#FF0218] transition-colors duration-300 ${
-                  index === 0 ? 'text-[#FF0218]' : 'text-gray-100'
-                }`}
-              >
-                {link.label}
+                onClick={(e) => handleNavClick(e, link.href)} 
+                className="relative font-medium hover:text-red-100 transition-colors duration-300 flex flex-col items-center group">
+                <span className={`${
+                  isActiveLink(link.href) ? 'text-red-100' : 'text-white'
+                }`}>
+                  {link.label}
+                </span>
+                {/* Point rouge sous le lien actif */}
+                {isActiveLink(link.href) && (
+                  <span className="absolute -bottom-2 w-1.5 h-1.5 bg-red-100 rounded-full"></span>
+                )}
               </a>
             ))}
           </nav>
           
           {/* Bouton desktop */}
           <button 
-            className="hidden md:flex h-10 text-white px-5 rounded-md hover:bg-[#C4171F] transition-all duration-300 items-center gap-2 shadow-md mr-4 lg:mr-6"
-            style={{ backgroundColor: '#E00216' }}
+            className="hidden md:flex h-10 text-white  bg-red-100 px-5 rounded-md transition-all duration-300 items-center gap-2 shadow-md mr-4 lg:mr-6"
           >
             Get started
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -99,12 +153,18 @@ export default function Header() {
                 <a
                   key={index}
                   href={link.href}
-                  className={`font-medium text-lg hover:text-[#FF0218] transition-colors duration-300 py-2 ${
-                    index === 0 ? 'text-[#FF0218]' : 'text-gray-100'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
+                  onClick={(e) => handleNavClick(e, link.href)} 
+                  className="relative font-medium text-lg hover:text-red-100 transition-colors duration-300 py-2 flex items-center gap-3"
+>
+                  {/* Point rouge à gauche pour mobile */}
+                  {isActiveLink(link.href) && (
+                    <span className="w-1.5 h-1.5 bg-red-100 rounded-full"></span>
+                  )}
+                  <span className={`${
+                    isActiveLink(link.href) ? 'text-red-100' : 'text-white'
+                  }`}>
+                    {link.label}
+                  </span>
                 </a>
               ))}
             </nav>

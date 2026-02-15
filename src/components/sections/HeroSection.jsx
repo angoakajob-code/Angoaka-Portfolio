@@ -15,7 +15,6 @@ export default function HeroSection() {
 
   return (
     <section
-      id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-4 md:pt-8"
     >
       {/* Background image */}

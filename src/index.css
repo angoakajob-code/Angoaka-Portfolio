@@ -10,7 +10,7 @@ html {
   scroll-behavior: smooth;
 }
 
-:root {
+@theme {
   --red-100: #FF0218;
   --red-80: #FF3546;
   --red-50: #FF818C;
@@ -21,7 +21,7 @@ html {
   --red-l1 : #B61C24;
   --red-l2 : #FC0006;
 
-  --gray-100: #FF0218;
+  --gray-100: #0F0F0F;
   --gray-80: #565656;
   --gray-50: #969696;
   --gray-30: #C0C0C0;

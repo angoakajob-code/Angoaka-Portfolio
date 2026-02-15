@@ -40,7 +40,7 @@ function ToolCard({ name, category, icon, background }) {
 
 export default function ToolsSection() {
   return (
-    <section id="projects" className="py-20 relative">
+    <section className="py-20 relative">
       <div className="container mx-auto px-6">
         <h2 className="text-white text-4xl md:text-5xl font-bold text-center mb-12 relative">
           <div className="absolute left-1/2 -translate-x-1/2 w-72 h-11 bg-red-500 blur-3xl opacity-50"></div>

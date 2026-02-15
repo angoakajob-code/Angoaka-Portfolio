@@ -6,7 +6,9 @@ export const COLORS = {
 export const NAVIGATION_LINKS = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Project' },
+  { href: '#services', label: 'Services' },
+  { href: '#projects', label: 'Projects' },
+
 ];
 
 export const SOCIAL_LINKS = [

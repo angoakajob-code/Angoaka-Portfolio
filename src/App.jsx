@@ -16,13 +16,13 @@ export default function App() {
       <Header />
       <SocialSidebar />
       <main>
-        <HeroSection />
-        <StatsSection />
-        <AboutSection />
-        <ToolsSection />
-        <ServicesSection />
-        <ProjectsSection />
-        <CallToActionSection />
+        <section id="home"><HeroSection /></section>
+        <section id="about"><StatsSection /></section>
+        <section id="about"><AboutSection /></section>
+        <section id="about"><ToolsSection /></section>
+        <section id="services"><ServicesSection /></section>
+        <section id="projects"><ProjectsSection /></section>
+        <section id="contacts"><CallToActionSection /></section>
       </main>
       <Footer />
     </div>
