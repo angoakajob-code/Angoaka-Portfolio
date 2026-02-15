@@ -240,7 +240,7 @@ const ProjectsSection = () => {
           <div className="text-center">
             <button
               onClick={() => setShowAll(!showAll)}
-              className="px-8 py-3.5 border-2 border-red-100 bg-transparent text-white rounded-xl font-semibold hover:bg-red-80/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto backdrop-blur-sm"
+              className="px-8 py-3.5 border-2 border-[#FF0218]  bg-transparent text-white rounded-xl font-semibold hover:bg-red-800/20 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 mx-auto backdrop-blur-sm"
             >
               {showAll ? 'Show Less' : 'View More'}
               <svg
