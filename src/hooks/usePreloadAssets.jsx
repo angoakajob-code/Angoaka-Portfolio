@@ -1,14 +1,11 @@
-// hooks/usePreloadAssets.js
+// hooks/usePreloadAssets.js (simplifié)
 import { useState, useEffect } from 'react';
 
 const usePreloadAssets = () => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
-
     const preloadAllAssets = async () => {
-      // Liste des images à précharger
       const imagesToPreload = [
         '/assets/images/angaoaka.png',
         '/assets/images/background.jpg',
@@ -26,32 +23,22 @@ const usePreloadAssets = () => {
         '/assets/images/K.svg',
       ];
 
-      // Charger les images en parallèle
       const imagePromises = imagesToPreload.map(src => {
         return new Promise((resolve) => {
           const img = new Image();
           img.src = src;
           img.onload = resolve;
-          img.onerror = resolve; // Ne pas bloquer sur erreur
+          img.onerror = resolve;
         });
       });
 
-      // Polices
       const fontPromise = document.fonts ? document.fonts.ready : Promise.resolve();
 
-      // Attendre le chargement des assets
       await Promise.all([...imagePromises, fontPromise]);
-      
-      if (mounted) {
-        setAssetsLoaded(true);
-      }
+      setAssetsLoaded(true);
     };
 
     preloadAllAssets();
-
-    return () => {
-      mounted = false;
-    };
   }, []);
 
   return assetsLoaded;

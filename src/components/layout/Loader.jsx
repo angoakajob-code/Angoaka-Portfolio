@@ -13,10 +13,9 @@ const SEQUENCE = [
 ];
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
-const SIZE    = 160;   // taille du cercle en px
-const ORBIT_R = 95;   // rayon orbite > 80 → points À L'EXTÉRIEUR du cercle
+const SIZE    = 160;
+const ORBIT_R = 95;
 
-// 4 points : tête rouge vif (gros) → queue rose pâle (petit)
 const DOTS = [
   { angleOffset: 0,  r: 7,   color: '#FF0218', opacity: 1,    glow: 12 },
   { angleOffset: 12, r: 5.5, color: '#FF4466', opacity: 0.75, glow: 8  },
@@ -24,14 +23,14 @@ const DOTS = [
   { angleOffset: 31, r: 2.8, color: '#FFBBCC', opacity: 0.3,  glow: 3  },
 ];
 
-// ─── Composant ────────────────────────────────────────────────────────────────
-const Loader = ({ onFinished }) => {
-  const [progress,  setProgress]  = useState(0);
+const Loader = ({ onFinished, assetsReady }) => {
+  const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const [show1,     setShow1]     = useState(true);
-  const [show2,     setShow2]     = useState(false);
+  const [show1, setShow1] = useState(true);
+  const [show2, setShow2] = useState(false);
+  const [canFinish, setCanFinish] = useState(false);
 
-  // Animation du logo
+  // Animation du logo (tourne en boucle)
   useEffect(() => {
     let cancelled = false;
     const run = async (idx) => {
@@ -46,24 +45,50 @@ const Loader = ({ onFinished }) => {
     return () => { cancelled = true; };
   }, []);
 
-  // Barre de progression
+  // Barre de progression - ralentie pour attendre les assets
   useEffect(() => {
     const iv = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(iv);
-          // Petit délai avant de cacher le loader
-          setTimeout(() => { 
-            setIsVisible(false); 
-            setTimeout(onFinished, 200); 
-          }, 500);
-          return 100;
+        // Si les assets sont prêts, on peut accélérer ou finir
+        if (assetsReady) {
+          // Quand on arrive à 100, on prépare la fin
+          if (prev >= 100) {
+            clearInterval(iv);
+            setCanFinish(true);
+            return 100;
+          }
+          // Progression normale
+          return prev + 1;
+        } else {
+          // Tant que les assets ne sont pas prêts, on ralentit la progression
+          // pour éviter d'arriver à 100 trop tôt
+          if (prev < 70) {
+            return prev + 0.5;
+          } else if (prev < 85) {
+            return prev + 0.3;
+          } else if (prev < 95) {
+            return prev + 0.1;
+          } else {
+            // On stagne à 95-98 en attendant
+            return prev;
+          }
         }
-        return prev + 1;
       });
     }, 30);
+
     return () => clearInterval(iv);
-  }, [onFinished]);
+  }, [assetsReady]);
+
+  // Quand tout est prêt (assets chargés ET progression à 100)
+  useEffect(() => {
+    if (canFinish && assetsReady) {
+      // Petit délai pour que l'utilisateur voie 100%
+      setTimeout(() => {
+        setIsVisible(false);
+        setTimeout(onFinished, 200);
+      }, 500);
+    }
+  }, [canFinish, assetsReady, onFinished]);
 
   return (
     <AnimatePresence>
@@ -77,7 +102,7 @@ const Loader = ({ onFinished }) => {
           style={{ background: 'radial-gradient(ellipse at 50% 45%, #242424 0%, #1A1A1A 55%, #111 100%)' }}
         >
           <div className="flex flex-col items-center">
-            {/* Conteneur du logo et des points orbitants */}
+            {/* Conteneur 240x240 */}
             <div className="mb-8" style={{ position: 'relative', width: 240, height: 240 }}>
 
               {/* Cercle centré */}
@@ -176,6 +201,11 @@ const Loader = ({ onFinished }) => {
                 />
               </div>
             </div>
+
+            {/* Message de chargement (optionnel) */}
+            {!assetsReady && progress > 90 && (
+              <p className="text-white/50 text-sm mt-2">Chargement des ressources...</p>
+            )}
           </div>
         </motion.div>
       )}

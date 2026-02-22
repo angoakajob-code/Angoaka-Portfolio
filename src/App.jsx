@@ -14,44 +14,32 @@ import Loader from './components/layout/Loader';
 import usePreloadAssets from './hooks/usePreloadAssets';
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
   const assetsLoaded = usePreloadAssets();
 
-  // Gérer la fin du chargement
+  // Gérer la fin du loader
   const handleLoaderFinished = () => {
-    setIsLoading(false);
+    setShowContent(true);
     document.body.style.overflow = 'auto';
   };
 
   // Bloquer le scroll pendant le chargement
   useEffect(() => {
-    if (isLoading) {
+    if (!showContent) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
     }
-    
-    // Cleanup
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isLoading]);
+  }, [showContent]);
 
-  // Attendre que les assets soient chargés pour commencer l'animation du loader
-  if (!assetsLoaded) {
-    return (
-      <div className="fixed inset-0 bg-[#1A1A1A] flex items-center justify-center">
-        <div className="text-white">Chargement...</div>
-      </div>
-    );
+  // Le loader s'affiche immédiatement et reste jusqu'à ce que :
+  // 1. Les assets soient chargés (assetsLoaded = true)
+  // 2. Le loader ait fini son animation (showContent = true)
+  if (!showContent) {
+    return <Loader 
+      onFinished={handleLoaderFinished} 
+      assetsReady={assetsLoaded} // On passe l'état des assets au loader
+    />;
   }
 
-  // Afficher le loader principal
-  if (isLoading) {
-    return <Loader onFinished={handleLoaderFinished} />;
-  }
-
-  // Afficher le contenu principal
   return (
     <div className="min-h-screen bg-linear-to-b from-[#1A1A1A] via-[#1A1A1A] to-[#1B1B1B]">
       <Header />
