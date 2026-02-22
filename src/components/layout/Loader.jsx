@@ -31,6 +31,7 @@ const Loader = ({ onFinished }) => {
   const [show1,     setShow1]     = useState(true);
   const [show2,     setShow2]     = useState(false);
 
+  // Animation du logo
   useEffect(() => {
     let cancelled = false;
     const run = async (idx) => {
@@ -45,12 +46,17 @@ const Loader = ({ onFinished }) => {
     return () => { cancelled = true; };
   }, []);
 
+  // Barre de progression
   useEffect(() => {
     const iv = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(iv);
-          setTimeout(() => { setIsVisible(false); setTimeout(onFinished, 200); }, 500);
+          // Petit délai avant de cacher le loader
+          setTimeout(() => { 
+            setIsVisible(false); 
+            setTimeout(onFinished, 200); 
+          }, 500);
           return 100;
         }
         return prev + 1;
@@ -71,16 +77,10 @@ const Loader = ({ onFinished }) => {
           style={{ background: 'radial-gradient(ellipse at 50% 45%, #242424 0%, #1A1A1A 55%, #111 100%)' }}
         >
           <div className="flex flex-col items-center">
-
-            {/*
-              Conteneur 240x240 — plus grand que le cercle (160px)
-              pour que les points qui orbitent à 95px du centre
-              ne soient JAMAIS clippés par le div parent.
-              Le cercle et le logo sont centrés à l'intérieur.
-            */}
+            {/* Conteneur du logo et des points orbitants */}
             <div className="mb-8" style={{ position: 'relative', width: 240, height: 240 }}>
 
-              {/* ── Cercle centré ── */}
+              {/* Cercle centré */}
               <div style={{
                 position: 'absolute',
                 top: '50%', left: '50%',
@@ -92,7 +92,7 @@ const Loader = ({ onFinished }) => {
                 background: 'transparent',
               }} />
 
-              {/* ── Logo A centré ── */}
+              {/* Logo A centré */}
               <div style={{
                 position: 'absolute',
                 top: '50%', left: '50%',
@@ -122,12 +122,7 @@ const Loader = ({ onFinished }) => {
                 </svg>
               </div>
 
-              {/*
-                ── SVG des points orbitants ──
-                Taille 240x240, centre = (120, 120).
-                ORBIT_R=95 → point le plus loin à cx=215 < 240 ✓
-                overflow="visible" en backup mais normalement pas nécessaire.
-              */}
+              {/* SVG des points orbitants */}
               <motion.svg
                 width={240}
                 height={240}
@@ -149,7 +144,6 @@ const Loader = ({ onFinished }) => {
                 </defs>
 
                 {DOTS.map((dot, i) => {
-                  // Tête à 0° (droite du cercle), queue décalée en négatif = en arrière dans la rotation CW
                   const rad = (-dot.angleOffset * Math.PI) / 180;
                   const cx  = 120 + ORBIT_R * Math.cos(rad);
                   const cy  = 120 + ORBIT_R * Math.sin(rad);
@@ -166,9 +160,22 @@ const Loader = ({ onFinished }) => {
                   );
                 })}
               </motion.svg>
-
             </div>
 
+            {/* Barre de progression */}
+            <div className="w-52 mb-4">
+              <div className="h-0.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.07)' }}>
+                <motion.div
+                  className="h-full rounded-full"
+                  style={{
+                    background: 'linear-gradient(90deg, #99010F, #FF0218)',
+                    boxShadow: '0 0 8px rgba(255,2,24,0.65)',
+                  }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.25 }}
+                />
+              </div>
+            </div>
           </div>
         </motion.div>
       )}

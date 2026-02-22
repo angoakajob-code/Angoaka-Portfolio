@@ -5,6 +5,8 @@ const usePreloadAssets = () => {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   useEffect(() => {
+    let mounted = true;
+
     const preloadAllAssets = async () => {
       // Liste des images à précharger
       const imagesToPreload = [
@@ -24,28 +26,32 @@ const usePreloadAssets = () => {
         '/assets/images/K.svg',
       ];
 
-      // Charger les images
+      // Charger les images en parallèle
       const imagePromises = imagesToPreload.map(src => {
         return new Promise((resolve) => {
           const img = new Image();
           img.src = src;
           img.onload = resolve;
-          img.onerror = resolve;
+          img.onerror = resolve; // Ne pas bloquer sur erreur
         });
       });
 
       // Polices
       const fontPromise = document.fonts ? document.fonts.ready : Promise.resolve();
 
-      // Temps minimum pour l'effet visuel
-      const minTimePromise = new Promise(resolve => setTimeout(resolve, 2500));
-
-      await Promise.all([...imagePromises, fontPromise, minTimePromise]);
+      // Attendre le chargement des assets
+      await Promise.all([...imagePromises, fontPromise]);
       
-      setAssetsLoaded(true);
+      if (mounted) {
+        setAssetsLoaded(true);
+      }
     };
 
     preloadAllAssets();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return assetsLoaded;

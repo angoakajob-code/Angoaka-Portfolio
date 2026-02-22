@@ -14,39 +14,56 @@ import Loader from './components/layout/Loader';
 import usePreloadAssets from './hooks/usePreloadAssets';
 
 export default function App() {
-  const [showContent, setShowContent] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const assetsLoaded = usePreloadAssets();
 
-  // Gérer l'affichage après le loader
+  // Gérer la fin du chargement
   const handleLoaderFinished = () => {
-    setShowContent(true);
-    // Petite animation pour faire apparaître le contenu
+    setIsLoading(false);
     document.body.style.overflow = 'auto';
   };
 
   // Bloquer le scroll pendant le chargement
   useEffect(() => {
-    if (!showContent) {
+    if (isLoading) {
       document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
     }
-  }, [showContent]);
+    
+    // Cleanup
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isLoading]);
 
-  if (!assetsLoaded || !showContent) {
+  // Attendre que les assets soient chargés pour commencer l'animation du loader
+  if (!assetsLoaded) {
+    return (
+      <div className="fixed inset-0 bg-[#1A1A1A] flex items-center justify-center">
+        <div className="text-white">Chargement...</div>
+      </div>
+    );
+  }
+
+  // Afficher le loader principal
+  if (isLoading) {
     return <Loader onFinished={handleLoaderFinished} />;
   }
 
+  // Afficher le contenu principal
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1A1A1A] via-[#1A1A1A] to-[#1B1B1B]">
+    <div className="min-h-screen bg-linear-to-b from-[#1A1A1A] via-[#1A1A1A] to-[#1B1B1B]">
       <Header />
       <SocialSidebar />
       <main>
         <section id="home"><HeroSection /></section>
-        <section id="about"><StatsSection /></section>
+        <section id="stats"><StatsSection /></section>
         <section id="about"><AboutSection /></section>
-        <section id="about"><ToolsSection /></section>
+        <section id="tools"><ToolsSection /></section>
         <section id="services"><ServicesSection /></section>
         <section id="projects"><ProjectsSection /></section>
-        <section id="contacts"><CallToActionSection /></section>
+        <section id="contact"><CallToActionSection /></section>
       </main>
       <Footer />
     </div>
