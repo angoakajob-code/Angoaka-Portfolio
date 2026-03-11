@@ -12,7 +12,7 @@ export const NAVIGATION_LINKS = [
 ];
 
 export const SOCIAL_LINKS = [
-  { icon: 'Facebook', href: 'https://facebook.com' },
+  { icon: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61587259212222' },
   { icon: 'Linkedin', href: 'https://linkedin.com' },
   { icon: 'Mail', href: 'mailto:contact@angoaka.com' },
   { icon: 'MessageCircle', href: 'https://wa.me/' },
