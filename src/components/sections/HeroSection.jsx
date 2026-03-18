@@ -204,7 +204,9 @@ export default function HeroSection() {
               </motion.svg>
             </button>
 
-            <button className="h-11 group border border-white text-white px-6 py-1.5 rounded-md hover:bg-white hover:text-[#E00216] transition">
+            <button 
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="h-11 group border border-white text-white px-6 py-1.5 rounded-md hover:bg-white hover:text-[#E00216] transition">
               <span>Our Project</span>
             </button>
           </div>
